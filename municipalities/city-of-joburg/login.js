@@ -1,0 +1,11 @@
+const loginBase = require("../../common/loginBase");
+const config = require("./config");
+
+/**
+ * Login function for City of Joburg
+ * @returns {Promise<{browser: import('puppeteer').Browser, page: import('puppeteer').Page}>}
+ */
+module.exports = async function login() {
+  // Use the shared loginBase with city-of-joburg config
+  return await loginBase(config);
+};
