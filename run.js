@@ -20,7 +20,7 @@ async function main() {
   // Load config and modules
   const config = require(path.join(baseDir, "config.js"));
   const login = require(path.join(baseDir, "login.js"));
-  const statementHistory = require(path.join(baseDir, "statement-history.js"));
+  const statementHistory = require(path.join(baseDir, "download-process.js"));
 
   // Perform login
   const { browser, page } = await login();

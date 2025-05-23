@@ -40,7 +40,7 @@ async function loginBase(config) {
     await page.type(
       config.selectors.login.usernameInput,
       config.credentials.username,
-      { delay: 100 }
+      { delay: 200 }
     );
   } catch (error) {
     console.error("Username field not found:", error);
@@ -55,7 +55,7 @@ async function loginBase(config) {
     await page.type(
       config.selectors.login.passwordInput,
       config.credentials.password,
-      { delay: 100 }
+      { delay: 200 }
     );
   } catch (error) {
     console.error("Password field not found:", error);
