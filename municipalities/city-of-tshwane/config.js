@@ -1,5 +1,3 @@
-const statementHistory = require("./download-process");
-
 module.exports = {
   name: "city-of-tshwane",
 
@@ -20,7 +18,7 @@ module.exports = {
       passwordInput: 'input[placeholder="Password"]',
       submitButton: "button[type='submit'], input[type='submit'], .ui-button",
     },
-
+    // NOTE: download-process.js no longer uses these selectors directly
     statementHistory: {
       dropdownTrigger: ".ui-selectonemenu-trigger",
       dropdownItems: "li.ui-selectonemenu-item",

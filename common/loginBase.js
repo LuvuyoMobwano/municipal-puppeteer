@@ -25,7 +25,7 @@ async function loginBase(config) {
         visible: true,
         timeout: 5000,
       });
-      await page.click(config.selectors.login.dropdownToggle);
+      await page.click(config.selectors.login.dropdownToggle, { delay: 25 });
     } catch (error) {
       console.error("Login dropdown toggle not found (skipping):", error);
     }
@@ -40,7 +40,7 @@ async function loginBase(config) {
     await page.type(
       config.selectors.login.usernameInput,
       config.credentials.username,
-      { delay: 200 }
+      { delay: 150 }
     );
   } catch (error) {
     console.error("Username field not found:", error);
@@ -55,7 +55,7 @@ async function loginBase(config) {
     await page.type(
       config.selectors.login.passwordInput,
       config.credentials.password,
-      { delay: 200 }
+      { delay: 150 }
     );
   } catch (error) {
     console.error("Password field not found:", error);
@@ -67,7 +67,7 @@ async function loginBase(config) {
       visible: true,
       timeout: 5000,
     });
-    await page.click(config.selectors.login.submitButton);
+    await page.click(config.selectors.login.submitButton, { delay: 25 });
   } catch (error) {
     console.error("Login button not found:", error);
   }
@@ -79,7 +79,7 @@ async function loginBase(config) {
         visible: true,
         timeout: 5000,
       });
-      await page.click(config.selectors.login.popupClose);
+      await page.click(config.selectors.login.popupClose, { delay: 25 });
     } catch (error) {
       console.warn("Notice popup did not appear or could not be closed.");
     }

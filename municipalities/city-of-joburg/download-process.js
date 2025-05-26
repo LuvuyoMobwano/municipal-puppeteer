@@ -1,7 +1,7 @@
 const config = require("./config");
 
 /**
- * Scrapes the statement history for City of Joburg
+ * Downloads the statement history for City of Joburg
  * @param {import('puppeteer').Page} page - Authenticated Puppeteer page
  * @param {Object} cfg - Configuration object (optional, defaults to city-of-joburg config)
  */
@@ -19,7 +19,7 @@ module.exports = async function statementHistory(page, cfg = config) {
       visible: true,
       timeout: 5000,
     });
-    await page.click(dropdownTrigger);
+    await page.click(dropdownTrigger, { delay: 25 });
   } catch (err) {
     console.error("Dropdown trigger not found:", err);
   }

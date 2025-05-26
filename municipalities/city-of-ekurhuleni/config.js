@@ -17,14 +17,5 @@ module.exports = {
       passwordInput: "#Password",
       submitButton: 'input[type="submit"].btn.btn-primary',
     },
-
-    statementHistory: {
-      pageSizeDropdown: 'button[data-toggle="dropdown"].dropdown-toggle',
-      pageSizeOptions: "ul.dropdown-menu li a",
-    },
-  },
-
-  options: {
-    pageSize: "100", // This is the target innerText to match inside <a> elements
   },
 };

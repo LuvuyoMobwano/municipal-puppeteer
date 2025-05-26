@@ -20,16 +20,16 @@ async function main() {
   // Load config and modules
   const config = require(path.join(baseDir, "config.js"));
   const login = require(path.join(baseDir, "login.js"));
-  const statementHistory = require(path.join(baseDir, "download-process.js"));
+  const downloadProcess = require(path.join(baseDir, "download-process.js"));
 
   // Perform login
   const { browser, page } = await login();
 
-  // Run the municipality-specific statement history process
+  // Run the municipality-specific download process
   try {
-    await statementHistory(page, config);
+    await downloadProcess(page, config);
   } catch (error) {
-    console.error("Error running statementHistory:", error);
+    console.error("Error running download-process:", error);
   } finally {
     // Close the browser when done
     // await browser.close();

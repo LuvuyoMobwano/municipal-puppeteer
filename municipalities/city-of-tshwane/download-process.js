@@ -1,42 +1,46 @@
 const config = require("./config");
 
 /**
- * Scrapes the statement history for City of Tshwane.
- * @param {import('puppeteer').Page} page - Authenticated Puppeteer page
- * @param {Object} cfg - Configuration object (optional, defaults to city-of-tshwane config)
+ * Navigates to the statement history page for City of Tshwane
+ * then selects the configured account.
+ *
+ * @param {import('puppeteer').Page} page
+ * @param {Object} cfg
  */
-module.exports = async function statementHistory(page, cfg = config) {
+module.exports = async function downloadProcess(page, cfg = config) {
   const { urls, selectors, options } = cfg;
   const { dropdownTrigger, dropdownItems } = selectors.statementHistory;
   const target = options.accountNameOrNumber;
 
-  // Navigate to the statement history page
-  await page.goto(urls.statementHistory, { waitUntil: "domcontentloaded" });
+  // Navigate to the statement history page (no timeout)
+  try {
+    await page.goto(urls.statementHistory, {
+      waitUntil: "domcontentloaded",
+      timeout: 0,
+    });
+  } catch (err) {
+    console.warn("Navigation aborted (ignored):", err);
+  }
 
-  // Wait for and click the dropdown trigger
+  // Open the account dropdown
   try {
     await page.waitForSelector(dropdownTrigger, {
       visible: true,
       timeout: 5000,
     });
-    await page.click(dropdownTrigger);
+    await page.click(dropdownTrigger, { delay: 25 });
   } catch (err) {
     console.error("Dropdown trigger not found:", err);
+    return;
   }
 
-  // Wait for dropdown items to be present
+  // Wait for and select the account
   try {
     await page.waitForFunction(
       (sel) => document.querySelectorAll(sel).length > 0,
       { timeout: 10000 },
       dropdownItems
     );
-  } catch (err) {
-    console.error("Dropdown items did not render:", err);
-  }
-
-  // Select the configured account from the dropdown
-  try {
     await page.evaluate(
       (sel, value) => {
         const items = Array.from(document.querySelectorAll(sel));
