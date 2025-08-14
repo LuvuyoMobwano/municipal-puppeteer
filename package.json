@@ -4,6 +4,9 @@
   "description": "",
   "main": "run.js",
   "scripts": {
+    "joburg": "node run.js city-of-joburg",
+    "tshwane": "node run.js city-of-tshwane",
+    "ekurhuleni": "node run.js city-of-ekurhuleni",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

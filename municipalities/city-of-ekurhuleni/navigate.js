@@ -32,6 +32,4 @@ module.exports = async function downloadProcess(page) {
       err
     );
   }
-
-  // 3) Now you can safely proceed with scraping, downloading, etc.
 };
